@@ -9,7 +9,6 @@ itsdangerous==2.0.1
 jinja2==3.0.3
 markupsafe==2.0.1
 mpmath==1.1.0
-sqlite==3.38.2
 sympy==1.6.2
 werkzeug==2.0.3
 wheel==0.37.1
