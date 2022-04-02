@@ -1,0 +1,72 @@
+input {
+    width: 90%;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: darkblue;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.inputTable tr, .inputTable td{
+    border-collapse: collapse;
+    padding: 5px 0;
+    margin: 5px 0;
+}
+
+.valTable {
+    border: 1px solid black;
+    text-align: center;
+}
+
+.valTable th, .valTable td {
+    border: 1px solid grey;
+    text-align: center;
+    font-size: 16px;
+
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltipText {
+    font-size: 11px;
+    visibility: hidden;
+    width: 150px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+
+    top: -5%;
+    left: 110%;
+}
+
+/* tooltip arrow */
+.tooltip .tooltipText::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color:  transparent #555 transparent transparent;
+}
+
+/* show tooltip when hover */
+.tooltip:hover .tooltipText {
+    visibility: visible;
+    opacity: 1;
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Index Page</title>
+    <link type="text/css" rel="stylesheet" href={{ url_for('static', filename='style.css') }}>    
+</head> 
+<body>
+    <form method="POST">
+        <table class="inputTable">
+            <tr>
+                <td><label>Enter loss function <i>C<sub>f</sub></i></label></td>
+                <td>
+                    <input type="text" id="fn" name="fn" required
+                    value={{ context.defaults.fn }}>
+                </td>
+                <td>
+                    <div class="tooltip">(?)
+                        <span class="tooltipText">Enter function in terms of x; accepts either x**2 or x^2</span>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label>Enter initial value </label></td>
+                <td>
+                    <input type="text" id="x0" name="x0" required
+                    value={{ context.defaults.x0 }}>
+                </td>
+                <td>
+                    <div class="tooltip">(?)
+                        <span class="tooltipText">The initial value of x</span>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label>Enter learning rate </label></td>
+                <td>
+                    <input type="number" id="eta" name="eta" required
+                    min="0" max="0.2" step="0.01" value={{ context.defaults.eta }}>
+                </td>
+                <td>
+                    <div class="tooltip">(?)
+                        <span class="tooltipText">Enter a value from 0 to 0.2</span>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label>Enter number of iterations </label></td>
+                <td>
+                    <input type="number" id="numIter" name="numIter" required 
+                    min="1" max="20" step="1" value={{ context.defaults.numIter }}>
+                </td>
+                <td>
+                    <div class="tooltip">(?)
+                        <span class="tooltipText">Enter an integer from 1 to 20</span>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="3">
+                    <input class="submitButton" type="submit" value="Calculate">
+                </td>
+            </tr>      
+        </table>    
+    </form>
+
+    <br/>
+
+    <p> The derivate of <i>C<sub>f</sub></i> : {{ context.df }} </p>
+
+    <br/>
+
+    <table class="valTable">
+        <tr>
+            <th>#Iter</th>
+            <th>Value of <i>x</i></th>
+            <th>Value of <i>C<sub>f</sub></i></th>
+        </tr>
+        {% for i in range(context.res | length) %}
+        <tr>
+            <td> {{ i + 1 }} </td>
+            <td> {{ context.res[i].0 }} </td>
+            <td> {{ context.res[i].1 }} </td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+
+</body>
+</html>
