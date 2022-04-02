@@ -9,7 +9,6 @@ itsdangerous==2.0.1
 jinja2==3.0.3
 markupsafe==2.0.1
 mpmath==1.1.0
-openssl==1.1.1n
 python==3.8.13
 setuptools==58.0.4
 sqlite==3.38.2
