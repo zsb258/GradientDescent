@@ -5,6 +5,7 @@
     <link type="text/css" rel="stylesheet" href={{ url_for('static', filename='style.css') }}>    
 </head> 
 <body>
+    <p style="color: red;">{{ context.status|safe }}</p>
     <form method="POST">
         <table class="inputTable">
             <tr>
@@ -15,13 +16,24 @@
                 </td>
                 <td>
                     <div class="tooltip">(?)
-                        <span class="tooltipText">Enter function in terms of x; accepts either x**2 or x^2</span>
+                        <span class="tooltipText">
+                            Use x for single variable. Use x, y for two variables.
+                        </span>
                     </div>
                 </td>
             </tr>
 
             <tr>
-                <td><label>Enter initial value </label></td>
+                <td class="radio" colspan="3">
+                    <input type="radio" id="single" name="numVar" value="1" {{ context.defaults.numVar1 }}>
+                    <label for="single"><i>x</i> only</label>
+                    <input type="radio" id="double" name="numVar" value="2" {{ context.defaults.numVar2 }}>
+                    <label for="double"><i>x</i> and <i>y</i></label>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label>Enter initial value for <i>x</i> </label></td>
                 <td>
                     <input type="text" id="x0" name="x0" required
                     value={{ context.defaults.x0 }}>
@@ -29,6 +41,21 @@
                 <td>
                     <div class="tooltip">(?)
                         <span class="tooltipText">The initial value of x</span>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label>Enter initial value for <i>y</i> </label></td>
+                <td>
+                    <input type="text" id="y0" name="y0" required
+                    value={{ context.defaults.y0 }}>
+                </td>
+                <td>
+                    <div class="tooltip">(?)
+                        <span class="tooltipText">
+                            The initial value of y. Not relevant for single variable
+                        </span>
                     </div>
                 </td>
             </tr>
@@ -69,7 +96,9 @@
 
     <br/>
 
-    <p> The derivate of <i>C<sub>f</sub></i> : {{ context.df }} </p>
+    <p> Gradient: </p>
+    <p>&nabla;<i><sub>x</sub></i> = {{ context.dfx }} </p>
+    <p>&nabla;<i><sub>y</sub></i> = {{ context.dfy }} </p>
 
     <br/>
 
@@ -77,6 +106,7 @@
         <tr>
             <th>#Iter</th>
             <th>Value of <i>x</i></th>
+            <th>Value of <i>y</i></th>
             <th>Value of <i>C<sub>f</sub></i></th>
         </tr>
         {% for i in range(context.res | length) %}
@@ -84,6 +114,7 @@
             <td> {{ i + 1 }} </td>
             <td> {{ context.res[i].0 }} </td>
             <td> {{ context.res[i].1 }} </td>
+            <td> {{ context.res[i].2 }} </td>
         </tr>
         {% endfor %}
     </table>
