@@ -1,1 +1,1 @@
-web: gunicorn GradientDescent.wsgi:app
+web: gunicorn wsgi:app
